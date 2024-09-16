@@ -22,6 +22,7 @@ updated_at = Column(
 
 
 def execute_sql_text(text: str):
+    """Execute text as SQL query"""
     return db.session.execute(db.text(text))
 
 
@@ -214,6 +215,7 @@ class BaseModel(ModelCRUD, db.Model):
 
 
 class TableModel(BaseModel):
+    """Abstract table model with id, created_at, updated_at columns"""
     __abstract__ = True
     id = Column(Integer, primary_key=True)
     created_at = new_timestamp_column(default=datetime.utcnow)
